@@ -3,20 +3,36 @@
     <header>
       <span>Vue.js PWA</span>
     </header>
-    <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <hello></hello>
-    </main>
-  </div>
+    <div class="center">
+      <div class="flex">
+        <btn :btnColor="red"></btn>
+        <btn :btnColor="blue"></btn>
+      </div>
+      <div class="flex">
+        <btn :btnColor="orange"></btn>
+        <btn :btnColor="green"></btn>
+      </div>
+    </div>
+    </div>
 </template>
 
 <script>
 import Hello from './components/Hello'
+import Btn from './components/Button'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Hello,
+    Btn
+  },
+  data () {
+    return {
+      red: '#cb4e4e',
+      blue: '#0e83cd',
+      orange: '#fcad26',
+      green: '#17954c'
+    }
   }
 }
 </script>
@@ -55,5 +71,14 @@ header span {
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.center{
+  margin: 1rem auto;
+  width: 100%;
 }
 </style>

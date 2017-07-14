@@ -1,0 +1,75 @@
+<template>
+  <div>
+    <button class="btn btn-2 btn-2d" :style="{ backgroundColor: btnColor}">Test</button>
+  </div>
+
+</template>
+<script>
+export default {
+  name: 'btn',
+  props: [
+    'btnColor'
+  ],
+  data () {
+    return {
+    }
+  }
+}
+</script>
+<style>
+.btn {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 25px 80px;
+	display: inline-block;
+	margin: 15px 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn-2 {
+	background: #cb4e4e;
+	color: #fff;
+	box-shadow: 0 6px #ab3c3c;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+/* Button 2d */
+.btn-2d {
+	border-radius: 5px;
+}
+
+.btn-2d:hover {
+	box-shadow: 0 8px #ab3c3c;
+	top: -2px;
+}
+
+.btn-2d:active {
+	box-shadow: 0 0 #ab3c3c;
+	top: 6px;
+}
+
+
+</style>
+
