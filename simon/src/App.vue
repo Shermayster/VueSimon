@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{'body-disbled': bodyDesabled}">
     <header>
       <span>Simon Game</span>
     </header>
@@ -67,14 +67,15 @@ export default {
       round: 1,
       gameStarted: false,
       btnOrder: [],
-      turn: 0
+      turn: 0,
+      bodyDesabled: false
     }
   },
   methods: {
     aiTurn: function () {
       const buttons = ['btn-red', 'btn-blue', 'btn-orange', 'btn-green']
       if (this.btnOrder.length < this.round) {
-        console.log('ai turn', this.round)
+        this.bodyDesabled = true
         const randNumber = Math.floor(Math.random() * 3)
         this.btnOrder.push(buttons[randNumber])
         btnClick(buttons[randNumber]).then(res => {
@@ -82,24 +83,27 @@ export default {
             this.aiTurn()
           }, 1000)
         })
+      } else {
+        this.bodyDesabled = false
       }
     },
     startGame: function () {
       this.gameStarted = true
       setTimeout(() => {
         this.aiTurn()
-      }, 2000)
+      }, 1500)
     },
     checkTurn: function (e) {
-      console.log('class')
-      console.log('check', e[0] === this.btnOrder[this.turn])
       if (e[0] === this.btnOrder[this.turn]) {
         this.turn++
         if (this.turn >= this.round) {
+          console.log('ai turn', [this.turn, this.round])
           this.round++
-          this.aiTurn()
-          this.turn = 0
           this.btnOrder = []
+          this.turn = 0
+          setTimeout(() => {
+            this.aiTurn()
+          }, 500)
         }
       } else {
         this.endGame()
@@ -109,7 +113,7 @@ export default {
       console.log('end game ')
       this.gameStarted = false
       this.turn = 0
-      this.round = 0
+      this.round = 1
       this.btnOrder = []
     }
   }
@@ -182,5 +186,8 @@ header span {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
+}
+.body-disabled {
+  pointer-events: none;
 }
 </style>

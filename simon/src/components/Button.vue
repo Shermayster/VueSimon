@@ -45,6 +45,14 @@ export default {
   border-radius: 5px;
   color: #fff;
   width: 15rem;
+
+  &.active {
+    box-shadow: unset;
+	  top: unset;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+  }
 }
 
 .btn:after {
@@ -66,13 +74,6 @@ export default {
     box-shadow: 0 0 #ab3c3c;
 	  top: 6px;
   }
-  &.active{
-    box-shadow: unset;
-	  top: unset;
-    background-color: #fff;
-    color: #000;
-    border: 1px solid;
-  }
 }
 
 .btn-red:hover {
@@ -89,12 +90,7 @@ export default {
     box-shadow: 0 0 #085a8e;
 	  top: 6px;
   }
-  &.active{
-    @extend :active;
-    background-color: #fff;
-    color: #000;
-    border: 1px solid;
-  }
+
 }
 
 .btn-blue:hover {
@@ -116,12 +112,6 @@ export default {
     	box-shadow: 0 0 #b17713;
 	    top: 6px;
   }
-  &.active{
-    @extend :active;
-    background-color: #fff;
-    color: #000;
-    border: 1px solid;
-  }
 }
 
 .btn-orange:hover {
@@ -141,12 +131,6 @@ export default {
   &:active {
     box-shadow: 0 0 #0f6131;
 	  top: 6px;
-  }
-  &.active{
-    @extend :active;
-    background-color: #fff;
-    color: #000;
-    border: 1px solid;
   }
 }
 
