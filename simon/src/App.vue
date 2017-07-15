@@ -1,43 +1,122 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
+      <span>Simon Game</span>
     </header>
-    <div class="center">
-      <div class="flex">
-        <btn :btnColor="red"></btn>
-        <btn :btnColor="blue"></btn>
-      </div>
-      <div class="flex">
-        <btn :btnColor="orange"></btn>
-        <btn :btnColor="green"></btn>
-      </div>
+    <div class="flex" :class="{menu: !gameStarted, gameStarted: gameStarted}">
+        <transition name="fade">
+          <div v-if="!gameStarted">
+            <btn :btnData="startBtn" @clickEvent="startGame"></btn>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div v-if="gameStarted">
+            <btn @clickEvent="checkTurn(red.styleClass)" :btnData="red"></btn>
+            <btn @clickEvent="checkTurn(blue.styleClass)" :btnData="blue"></btn>
+            <btn @clickEvent="checkTurn(orange.styleClass)" :btnData="orange"></btn>
+            <btn @clickEvent="checkTurn(green.styleClass)" :btnData="green"></btn>
+        </div>
+        </transition>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
 import Btn from './components/Button'
+
+const btnClick = (selector) => {
+  console.log('buttons clicked', `.${selector}`)
+  const btn = document.querySelector(`.${selector}`)
+  btn.classList.add('active')
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      btn.classList.remove('active')
+      console.log('classed', btn.classList)
+      resolve('')
+    }, 1000)
+  })
+}
 
 export default {
   name: 'app',
   components: {
-    Hello,
     Btn
   },
   data () {
     return {
-      red: '#cb4e4e',
-      blue: '#0e83cd',
-      orange: '#fcad26',
-      green: '#17954c'
+      red: {
+        styleClass: ['btn-red'],
+        name: 'Red'
+      },
+      blue: {
+        styleClass: ['btn-blue'],
+        name: 'Blue'
+      },
+      orange: {
+        styleClass: ['btn-orange'],
+        name: 'Orange'
+      },
+      green: {
+        styleClass: ['btn-green'],
+        name: 'Green'
+      },
+      startBtn: {
+        styleClass: ['btn-blue'],
+        name: 'Start Game'
+      },
+      round: 1,
+      gameStarted: false,
+      btnOrder: [],
+      turn: 0
+    }
+  },
+  methods: {
+    aiTurn: function () {
+      const buttons = ['btn-red', 'btn-blue', 'btn-orange', 'btn-green']
+      if (this.btnOrder.length < this.round) {
+        console.log('ai turn', this.round)
+        const randNumber = Math.floor(Math.random() * 3)
+        this.btnOrder.push(buttons[randNumber])
+        btnClick(buttons[randNumber]).then(res => {
+          setTimeout(() => {
+            this.aiTurn()
+          }, 1000)
+        })
+      }
+    },
+    startGame: function () {
+      this.gameStarted = true
+      setTimeout(() => {
+        this.aiTurn()
+      }, 2000)
+    },
+    checkTurn: function (e) {
+      console.log('class')
+      console.log('check', e[0] === this.btnOrder[this.turn])
+      if (e[0] === this.btnOrder[this.turn]) {
+        this.turn++
+        if (this.turn >= this.round) {
+          this.round++
+          this.aiTurn()
+          this.turn = 0
+          this.btnOrder = []
+        }
+      } else {
+        this.endGame()
+      }
+    },
+    endGame: function () {
+      console.log('end game ')
+      this.gameStarted = false
+      this.turn = 0
+      this.round = 0
+      this.btnOrder = []
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
 }
@@ -72,13 +151,36 @@ header span {
   box-sizing: border-box;
   padding-top: 16px;
 }
+
 .flex {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.center{
+
+.center {
   margin: 1rem auto;
   width: 100%;
+}
+
+.menu {
+  background: #ecf0f1;
+  height: 100vh;
+}
+.gameStarted {
+  background: #fff;
+}
+
+.fade-leave-active {
+  transition: opacity .5s;
+  position: absolute;
+}
+.fade-enter-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
 }
 </style>

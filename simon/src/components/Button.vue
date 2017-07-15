@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button class="btn btn-2 btn-2d" :style="{ backgroundColor: btnColor}">Test</button>
+    <button class="btn" :class="btnData.styleClass"
+    v-on:click="clickEvent()"
+    >{{btnData.name}}</button>
   </div>
 
 </template>
@@ -8,15 +10,20 @@
 export default {
   name: 'btn',
   props: [
-    'btnColor'
+    'btnData'
   ],
   data () {
     return {
     }
+  },
+  methods: {
+    clickEvent: function () {
+      this.$emit('clickEvent')
+    }
   }
 }
 </script>
-<style>
+<style lang="scss">
 .btn {
 	border: none;
 	font-family: inherit;
@@ -35,6 +42,9 @@ export default {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
+  border-radius: 5px;
+  color: #fff;
+  width: 15rem;
 }
 
 .btn:after {
@@ -46,30 +56,109 @@ export default {
 	transition: all 0.3s;
 }
 
-.btn-2 {
+
+/* Button 1 */
+
+.btn-red {
 	background: #cb4e4e;
-	color: #fff;
 	box-shadow: 0 6px #ab3c3c;
-	-webkit-transition: none;
-	-moz-transition: none;
-	transition: none;
+  &:active{
+    box-shadow: 0 0 #ab3c3c;
+	  top: 6px;
+  }
+  &.active{
+    box-shadow: unset;
+	  top: unset;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+  }
 }
 
-/* Button 2d */
-.btn-2d {
-	border-radius: 5px;
-}
-
-.btn-2d:hover {
+.btn-red:hover {
 	box-shadow: 0 8px #ab3c3c;
 	top: -2px;
 }
 
-.btn-2d:active {
-	box-shadow: 0 0 #ab3c3c;
-	top: 6px;
+/* Button 2 */
+.btn-blue {
+	background: #0e83cd;
+	box-shadow: 0 6px #085a8e;
+
+  &:active {
+    box-shadow: 0 0 #085a8e;
+	  top: 6px;
+  }
+  &.active{
+    @extend :active;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+  }
 }
 
+.btn-blue:hover {
+	box-shadow: 0 8px #085a8e;
+	top: -2px;
+}
+
+// .btn-blue:active, .btn-blue .active {
+// 	box-shadow: 0 0 #085a8e;
+// 	top: 6px;
+// }
+
+/* Button 3 */
+.btn-orange {
+	background: #fcad26;
+	box-shadow: 0 6px #b17713;
+
+  &:active {
+    	box-shadow: 0 0 #b17713;
+	    top: 6px;
+  }
+  &.active{
+    @extend :active;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+  }
+}
+
+.btn-orange:hover {
+	box-shadow: 0 8px #b17713;
+	top: -2px;
+}
+
+// .btn-orange:active, .btn-orange .active {
+// 	box-shadow: 0 0 #b17713;
+// 	top: 6px;
+// }
+
+/* Button 4 */
+.btn-green {
+	background: #17954c;
+	box-shadow: 0 6px #0f6131;
+  &:active {
+    box-shadow: 0 0 #0f6131;
+	  top: 6px;
+  }
+  &.active{
+    @extend :active;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+  }
+}
+
+.btn-green:hover {
+	box-shadow: 0 8px #0f6131;
+	top: -2px;
+}
+
+// .btn-green:active, .btn-green .active {
+// 	box-shadow: 0 0 #0f6131;
+// 	top: 6px;
+// }
 
 </style>
 
