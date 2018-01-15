@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Vue Simon game",
   "author": "Pavel Shermayster <sherm84@gmail.com>",
+  "homepage": "https://sherm84.github.io/VueSimon/",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
@@ -13,7 +15,8 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
-    "vue": "^2.3.3"
+    "vue": "^2.3.3",
+    "vue-gh-pages": "^1.7.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
