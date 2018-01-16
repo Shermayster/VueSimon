@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Vue Simon game",
   "author": "Pavel Shermayster <sherm84@gmail.com>",
-  "homepage": "https://sherm84.github.io/vuesimon/",
+  "homepage": "https://sherm84.github.io/VueSimon/",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
