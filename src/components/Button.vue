@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div>
     <button class="btn" :class="btnData.styleClass"
@@ -98,11 +99,6 @@ export default {
 	top: -2px;
 }
 
-// .btn-blue:active, .btn-blue .active {
-// 	box-shadow: 0 0 #085a8e;
-// 	top: 6px;
-// }
-
 /* Button 3 */
 .btn-orange {
 	background: #fcad26;
@@ -119,11 +115,6 @@ export default {
 	top: -2px;
 }
 
-// .btn-orange:active, .btn-orange .active {
-// 	box-shadow: 0 0 #b17713;
-// 	top: 6px;
-// }
-
 /* Button 4 */
 .btn-green {
 	background: #17954c;
@@ -133,16 +124,9 @@ export default {
 	  top: 6px;
   }
 }
-
+/* eslint-disable */
 .btn-green:hover {
 	box-shadow: 0 8px #0f6131;
 	top: -2px;
 }
-
-// .btn-green:active, .btn-green .active {
-// 	box-shadow: 0 0 #0f6131;
-// 	top: 6px;
-// }
-
 </style>
-
