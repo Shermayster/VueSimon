@@ -66,7 +66,6 @@ export default {
 
 
 /* Button 1 */
-
 .btn-red {
 	background: #cb4e4e;
 	box-shadow: 0 6px #ab3c3c;
