@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div>
     <button class="btn" :class="btnData.styleClass"
@@ -124,7 +123,7 @@ export default {
 	  top: 6px;
   }
 }
-/* eslint-disable */
+
 .btn-green:hover {
 	box-shadow: 0 8px #0f6131;
 	top: -2px;
